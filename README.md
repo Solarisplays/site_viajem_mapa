@@ -40,7 +40,7 @@ O **RotaRS** é um projeto desenvolvido com foco em mototurismo pelo estado do R
 - **Visualizador Lightbox (Estilo Steam)**: Foto em destaque à esquerda e painel de informações à direita, permitindo ao dono da conta editar a legenda, substituir a foto ou excluí-la.
 
 ### 5. Autenticação e Cadastro (`login.html`)
-- Login de usuários e perfil especial de Administrador (`adm@gmail.com`).
+- Login de usuários e perfil especial de Administrador.
 - Formulário de cadastro com dados pessoais e especificações da motocicleta (marca, modelo e consumo em km/L).
 - Validações de campos em tempo real e persistência via `localStorage`.
 
