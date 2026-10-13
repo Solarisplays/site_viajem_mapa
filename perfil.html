@@ -1,0 +1,282 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil do Usuário | RotaRS</title>
+    <!-- Fonte Google (Poppins & Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="light-theme">
+
+  <!-- Cabeçalho -->
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <span class="logo-bold">Rota</span><span class="logo-accent">RS</span>
+      </a>
+      <nav class="nav-menu">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="planejamento.html">Planejar Rota</a></li>
+          <li><a href="motos.html">Motos Registradas</a></li>
+        </ul>
+      </nav>
+      <div id="user-nav-container"></div>
+    </div>
+  </header>
+
+  <main class="container page-wrapper">
+    
+    <!-- ==================== VISÃO 1: PERFIL DO USUÁRIO ==================== -->
+    <div id="view-profile" class="profile-grid">
+      
+      <!-- Coluna da Esquerda: Dados do Perfil -->
+      <aside class="profile-sidebar">
+        <div class="card profile-card">
+          <div id="profile-avatar" class="avatar-circle">A</div>
+          <h1 id="profile-name">asdasd</h1>
+          <span id="profile-nickname" class="profile-handle">@asdasd</span>
+          
+          <div id="profile-bio" class="bio-box">
+            Nenhuma descrição informada.
+          </div>
+
+          <ul class="info-list">
+            <li><span>🎂 Idade:</span> <strong id="profile-age">Não informada</strong></li>
+            <li><span>📧 E-mail:</span> <strong id="profile-email">asdasd@gmail.com</strong></li>
+          </ul>
+
+          <!-- Card Veículo -->
+          <div class="vehicle-card">
+            <h3><img src="assets/motoicon.png" class="ui-icon" alt="" aria-hidden="true"> Meu Veículo</h3>
+            <div id="vehicle-details">
+              <p><strong>Modelo:</strong> <span id="profile-vehicle-model">p50</span></p>
+              <p><strong>Consumo:</strong> <span id="profile-vehicle-consumption">40</span> km/L</p>
+            </div>
+            <p id="vehicle-hidden-msg" class="privacy-tag hidden">🔒 Ocultado pelo usuário</p>
+          </div>
+
+          <button type="button" id="btn-go-edit" class="btn btn-primary btn-full">
+            ✏️ Editar Perfil & Privacidade
+          </button>
+        </div>
+      </aside>
+
+      <!-- Coluna da Direita: Galeria Real + Rotas -->
+      <section class="profile-content">
+        
+        <!-- Galeria Interativa -->
+        <div class="card content-card">
+          <div class="card-header">
+            <h2><img src="assets/posticon.png" class="ui-icon" alt="" aria-hidden="true"> Galeria de Fotos</h2>
+            <button type="button" id="btn-open-upload" class="btn btn-secondary btn-sm">+ Postar Foto</button>
+          </div>
+
+          <div id="gallery-container" class="photo-gallery-grid">
+            <!-- Fotos inseridas dinamicamente pelo JS -->
+          </div>
+          <p id="photos-hidden-msg" class="privacy-tag hidden">🔒 Galeria mantida como privada pelo usuário.</p>
+        </div>
+
+        <!-- Rotas Feitas -->
+        <div class="card content-card">
+          <div class="card-header">
+            <h2><img src="assets/rotaicon.png" class="ui-icon" alt="" aria-hidden="true"> Minhas Rotas</h2>
+          </div>
+          <div id="routes-container" class="routes-list">
+            <div class="route-item">
+              <div class="route-icon"><img src="assets/motoicon.png" class="ui-icon" alt="" aria-hidden="true"></div>
+              <div>
+                <h4>Rota das Missões - Rio Grande do Sul</h4>
+                <p>320 km • Concluída</p>
+              </div>
+            </div>
+          </div>
+          <p id="routes-hidden-msg" class="privacy-tag hidden">🔒 Rotas mantidas como privadas pelo usuário.</p>
+        </div>
+
+      </section>
+    </div>
+
+    <!-- ==================== VISÃO 2: EDITAR PERFIL (ESTILO STEAM CLARO) ==================== -->
+    <div id="view-edit-profile" class="edit-steam-container card hidden">
+      
+      <!-- Menu Lateral de Navegação (Estilo Steam) -->
+      <aside class="edit-sidebar-menu">
+        <a href="#" id="btn-back-to-profile" class="back-link">← Voltar ao seu perfil</a>
+        <nav class="steam-nav-tabs">
+          <button type="button" class="tab-btn active" data-tab="tab-geral">Geral</button>
+          <button type="button" class="tab-btn" data-tab="tab-veiculo">Veículo</button>
+          <button type="button" class="tab-btn" data-tab="tab-privacidade">Config. de Privacidade</button>
+        </nav>
+      </aside>
+
+      <!-- Conteúdo do Formulário -->
+      <main class="edit-main-content">
+        <form id="form-edit-profile">
+          
+          <!-- Aba 1: Geral -->
+          <div id="tab-geral" class="tab-panel active">
+            <h2>Geral</h2>
+            <p class="panel-subtitle">Defina o nome e os detalhes do seu perfil público.</p>
+
+            <div class="form-group">
+              <label for="edit-name">NOME COMPLETO</label>
+              <input type="text" id="edit-name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="edit-nickname">NOME DE USUÁRIO (@)</label>
+              <input type="text" id="edit-nickname" required />
+            </div>
+
+            <div class="form-group">
+              <label for="edit-bio">BIOGRAFIA / DESCRIÇÃO</label>
+              <textarea id="edit-bio" rows="4" placeholder="Fale um pouco sobre você e suas viagens..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="edit-age">IDADE</label>
+              <input type="number" id="edit-age" placeholder="Ex: 30" />
+            </div>
+          </div>
+
+          <!-- Aba 2: Veículo -->
+          <div id="tab-veiculo" class="tab-panel hidden">
+            <h2>Veículo</h2>
+            <p class="panel-subtitle">Cadastre as informações da sua moto ou carro principal.</p>
+
+            <div class="form-group">
+              <label for="edit-vehicle-model">MODELO DA MOTO OU CARRO</label>
+              <input type="text" id="edit-vehicle-model" placeholder="Ex: Honda CB 500X / p50" />
+            </div>
+
+            <div class="form-group">
+              <label for="edit-consumption">CONSUMO MÉDIO (KM/L)</label>
+              <input type="number" step="0.1" id="edit-consumption" placeholder="Ex: 40" />
+            </div>
+          </div>
+
+          <!-- Aba 3: Privacidade -->
+          <div id="tab-privacidade" class="tab-panel hidden">
+            <h2>Configurações de Privacidade</h2>
+            <p class="panel-subtitle">Escolha quais informações ficarão visíveis para outros usuários.</p>
+
+            <div class="checkbox-group">
+              <label class="custom-checkbox">
+                <input type="checkbox" id="priv-age" />
+                <span>Ocultar minha idade no perfil</span>
+              </label>
+
+              <label class="custom-checkbox">
+                <input type="checkbox" id="priv-email" />
+                <span>Ocultar meu e-mail público</span>
+              </label>
+
+              <label class="custom-checkbox">
+                <input type="checkbox" id="priv-vehicle" />
+                <span>Ocultar informações do meu veículo</span>
+              </label>
+
+              <label class="custom-checkbox">
+                <input type="checkbox" id="priv-photos" />
+                <span>Ocultar minha galeria de fotos</span>
+              </label>
+
+              <label class="custom-checkbox">
+                <input type="checkbox" id="priv-routes" />
+                <span>Ocultar minhas rotas feitas</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Ações do Formulário -->
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+          </div>
+        </form>
+      </main>
+
+    </div>
+
+  </main>
+
+  <!-- MODAL PARA POSTAR NOVA FOTO -->
+  <div id="modal-upload" class="modal-backdrop hidden">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3>Postar Foto na Galeria</h3>
+        <button type="button" id="btn-close-upload" class="close-btn">&times;</button>
+      </div>
+      <form id="form-upload-photo">
+        <div class="form-group">
+          <label for="photo-file">SELECIONAR IMAGEM DO DISPOSITIVO</label>
+          <input type="file" id="photo-file" accept="image/*" multiple required />
+        </div>
+        <div class="form-group">
+          <label for="photo-caption">LEGENDA DA FOTO</label>
+          <input type="text" id="photo-caption" placeholder="Ex: Rota das Missões - Rio Grande do Sul" required />
+        </div>
+        <button type="submit" class="btn btn-primary btn-full" style="margin-top: 1rem;">Publicar Foto</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL LIGHTBOX ESTILO STEAM -->
+  <div id="modal-lightbox" class="modal-backdrop hidden">
+    <div class="lb-steam-wrapper">
+
+      <!-- Botão de Fechar -->
+      <button type="button" id="btn-close-lightbox" class="lb-close-btn">&times;</button>
+
+      <!-- Lado Esquerdo: Imagem -->
+      <div class="lb-image-side">
+        <img id="lightbox-img" src="" alt="Foto expandida" />
+      </div>
+
+      <!-- Lado Direito: Painel de Informações -->
+      <div class="lb-info-side">
+
+        <!-- Cabeçalho: Avatar + Nome do Usuário -->
+        <div class="lb-user-header">
+          <div id="lb-user-avatar" class="lb-avatar"></div>
+          <div>
+            <p id="lb-user-name" class="lb-username"></p>
+            <p class="lb-user-status">Proprietário</p>
+          </div>
+        </div>
+
+        <hr class="lb-divider" />
+
+        <!-- Legenda -->
+        <div class="lb-caption-section">
+          <p class="lb-label">LEGENDA</p>
+          <p id="lightbox-caption" class="lb-caption-text"></p>
+          <input type="text" id="lightbox-caption-input" class="lb-caption-input hidden" placeholder="Digite a nova legenda..." />
+        </div>
+
+        <hr class="lb-divider" />
+
+        <!-- Ações do Proprietário -->
+        <div class="lb-owner-actions">
+          <button id="btn-edit-caption" class="lb-action-btn">✏️ Editar Legenda</button>
+          <button id="btn-save-caption" class="lb-action-btn lb-action-primary hidden">💾 Salvar Legenda</button>
+          <label class="lb-action-btn" style="cursor:pointer;">
+            🖼️ Trocar Foto
+            <input type="file" id="lightbox-change-photo" accept="image/*" class="hidden" />
+          </label>
+          <button id="btn-delete-photo" class="lb-action-btn lb-action-danger">🗑️ Excluir Foto</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="js/auth-nav.js"></script>
+  <script src="js/perfil.js"></script>
+</body>
+</html>

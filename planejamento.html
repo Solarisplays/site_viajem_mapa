@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planejar Rota | RotaRS</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Cabeçalho -->
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <span class="logo-bold">Rota</span><span class="logo-accent">RS</span>
+      </a>
+      <nav class="nav-menu">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="planejamento.html" class="active">Planejar Rota</a></li>
+          <li><a href="motos.html">Motos Registradas</a></li>
+        </ul>
+      </nav>
+      <div id="user-nav-container"></div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Topo -->
+    <section class="plan-hero">
+      <div class="container">
+        <h1>Planeje sua Viagem</h1>
+        <p>Escolha uma rota, selecione a moto e descubra quanto combustível e dinheiro você vai precisar.</p>
+
+        <!-- Indicador de etapas -->
+        <ol class="plan-steps">
+          <li id="step-ind-1" class="active"><span>1</span> Rota</li>
+          <li id="step-ind-2"><span>2</span> Moto</li>
+          <li id="step-ind-3"><span>3</span> Resultado</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ETAPA 1: ESCOLHER ROTA -->
+    <section id="step-rota" class="section plan-section">
+      <div class="container">
+        <div class="plan-toolbar">
+          <h2>Rotas Disponíveis</h2>
+          <input type="text" id="filtro-rotas" class="plan-filter" placeholder="Filtrar por nome, cidade ou categoria..." />
+        </div>
+        <div id="lista-de-rotas" class="plan-routes-grid"></div>
+      </div>
+    </section>
+
+    <!-- ETAPA 2: ESCOLHER MOTO + RESULTADO -->
+    <section id="step-moto" class="section plan-section bg-light hidden">
+      <div class="container plan-layout">
+
+        <!-- Coluna esquerda: rota selecionada + veículo -->
+        <div class="plan-col">
+          <div class="plan-card">
+            <div class="plan-card-header">
+              <h3><img src="assets/rotaicon.png" class="ui-icon" alt="" aria-hidden="true"> Rota Selecionada</h3>
+              <button type="button" id="btn-trocar-rota" class="plan-link-btn">Trocar rota</button>
+            </div>
+            <div id="rota-selecionada-info"></div>
+          </div>
+
+          <div class="plan-card">
+            <div class="plan-card-header">
+              <h3><img src="assets/motoicon.png" class="ui-icon" alt="" aria-hidden="true"> Sua Moto</h3>
+            </div>
+
+            <!-- Usuário logado com moto cadastrada -->
+            <div id="moto-usuario-box" class="hidden">
+              <div class="user-moto-box">
+                <p class="user-moto-label">Moto cadastrada no seu perfil</p>
+                <p id="user-moto-modelo" class="user-moto-modelo"></p>
+                <p id="user-moto-consumo" class="user-moto-consumo"></p>
+              </div>
+              <button type="button" id="btn-usar-outra" class="plan-link-btn">Usar outra moto do catálogo</button>
+            </div>
+
+            <!-- Seleção manual (visitante ou usuário que quer trocar) -->
+            <div id="moto-select-box">
+              <p id="aviso-login" class="plan-hint hidden">
+                Você não está logado. <a href="login.html">Entre na sua conta</a> para usar automaticamente a moto do seu perfil.
+              </p>
+              <div class="form-group">
+                <label for="select-moto">Selecione uma moto</label>
+                <select id="select-moto"></select>
+              </div>
+              <div class="form-group">
+                <label for="input-consumo">Consumo (km/L)</label>
+                <input type="number" id="input-consumo" step="0.1" min="1" placeholder="Ex: 30" />
+              </div>
+              <button type="button" id="btn-voltar-usuario" class="plan-link-btn hidden">Voltar para a minha moto</button>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="input-preco">Preço da gasolina (R$/L)</label>
+                <input type="number" id="input-preco" step="0.01" min="0" value="6.29" />
+              </div>
+              <div class="form-group">
+                <label for="check-ida-volta">Trajeto</label>
+                <select id="check-ida-volta">
+                  <option value="1">Somente ida</option>
+                  <option value="2">Ida e volta</option>
+                </select>
+              </div>
+            </div>
+
+            <button type="button" id="btn-calcular" class="btn btn-primary btn-full">Calcular Viagem</button>
+          </div>
+        </div>
+
+        <!-- Coluna direita: resultado -->
+        <div class="plan-col">
+          <div id="resultado-card" class="plan-card plan-result hidden">
+            <div class="plan-card-header">
+              <h3>📊 Resumo da Viagem</h3>
+            </div>
+            <div id="resultado-conteudo"></div>
+          </div>
+          <div id="resultado-placeholder" class="plan-card plan-placeholder">
+            <p>Selecione a moto e clique em <strong>Calcular Viagem</strong> para ver o consumo, o custo e as paradas para abastecer.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>&copy; 2026 RotaRS Mototurismo - Projeto Acadêmico de Desenvolvimento Web</p>
+      <nav aria-label="Links do rodapé">
+        <a href="index.html">Início</a> |
+        <a href="planejamento.html">Planejar</a> |
+        <a href="motos.html">Minhas Motos</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="js/auth-nav.js"></script>
+  <script src="js/rotas-data.js"></script>
+  <script src="js/motos-data.js"></script>
+  <script src="js/planejamento.js"></script>
+</body>
+</html>

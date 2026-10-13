@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Acesse ou crie sua conta no RotaRS para salvar seus veículos e histórico de viagens." />
+  <title>Conta e Perfil - RotaRS Mototurismo</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- Cabeçalho / Navegação -->
+  <header class="header">
+    <div class="container header-container">
+      <a href="index.html" class="logo" aria-label="RotaRS Página Inicial">
+        <span class="logo-bold">Rota</span><span class="logo-accent">RS</span>
+      </a>
+      <nav class="nav-menu" aria-label="Navegação principal">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="planejamento.html">Planejar Rota</a></li>
+          <li><a href="login.html" class="active" aria-current="page">Minha Conta</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-auth container">
+    <div class="auth-wrapper">
+      
+      <!-- Alternador de Abas (Login / Cadastro) -->
+      <div class="auth-tabs" role="tablist">
+        <button type="button" class="tab-btn active" id="tab-login" role="tab" aria-selected="true" aria-controls="panel-login">Entrar</button>
+        <button type="button" class="tab-btn" id="tab-register" role="tab" aria-selected="false" aria-controls="panel-register">Criar Conta</button>
+      </div>
+
+      <!-- PAINEL 1: LOGIN -->
+      <section id="panel-login" class="auth-panel" role="tabpanel" aria-labelledby="tab-login">
+        <h2>Acesse sua conta</h2>
+        <form id="form-login" novalidate>
+          <div class="form-group">
+            <label for="login-email">E-mail ou Apelido</label>
+            <input type="text" id="login-email" placeholder="seuemail@exemplo.com" required />
+            <span class="error-msg" id="err-login-email"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="login-password">Senha</label>
+            <input type="password" id="login-password" placeholder="••••••••" required />
+            <span class="error-msg" id="err-login-password"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Entrar no RotaRS</button>
+        </form>
+      </section>
+
+      <!-- PAINEL 2: CADASTRO COM 5+ CAMPOS E VALIDAÇÃO -->
+     <section id="panel-register" class="auth-panel hidden" role="tabpanel" aria-labelledby="tab-register">
+  <div class="panel-header-compact">
+    <h2>Criar Conta</h2>
+    <p class="form-subtitle">É rápido e fácil.</p>
+  </div>
+
+  <form id="form-register" novalidate>
+    
+    <!-- Linha 1: Nome Completo e Apelido lado a lado -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="reg-fullname" class="sr-only">Nome Completo</label>
+        <input type="text" id="reg-fullname" placeholder="Nome Completo *" required />
+        <span class="error-msg" id="err-reg-fullname"></span>
+      </div>
+      <div class="form-group">
+        <label for="reg-nickname" class="sr-only">Apelido</label>
+        <input type="text" id="reg-nickname" placeholder="Apelido no site *" required />
+        <span class="error-msg" id="err-reg-nickname"></span>
+      </div>
+    </div>
+
+    <!-- Linha 2: E-mail e Telefone lado a lado -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="reg-email" class="sr-only">E-mail</label>
+        <input type="email" id="reg-email" placeholder="E-mail *" required />
+        <span class="error-msg" id="err-reg-email"></span>
+      </div>
+      <div class="form-group">
+        <label for="reg-phone" class="sr-only">Telefone</label>
+        <input type="tel" id="reg-phone" placeholder="Celular / WhatsApp *" required />
+        <span class="error-msg" id="err-reg-phone"></span>
+      </div>
+    </div>
+
+    <!-- Linha 3: Senha e Tipo de Veículo -->
+    <div class="form-row">
+      <div class="form-group">
+        <label for="reg-password" class="sr-only">Nova Senha</label>
+        <input type="password" id="reg-password" placeholder="Nova Senha *" required />
+        <span class="error-msg" id="err-reg-password"></span>
+      </div>
+      <div class="form-group">
+        <label for="reg-vehicletype" class="sr-only">Tipo de Veículo</label>
+        <select id="reg-vehicletype" required>
+          <option value="">Selecione o Veículo... *</option>
+          <option value="moto">Motocicleta</option>
+          <option value="carro">Automóvel / Carro</option>
+        </select>
+        <span class="error-msg" id="err-reg-vehicletype"></span>
+      </div>
+    </div>
+
+    <!-- LINHA CONDICIONAL: Modelo e Consumo (Oculto por padrão, exibe ao selecionar Moto/Carro) -->
+    <div id="conditional-vehicle-fields" class="form-row hidden">
+      <div class="form-group">
+        <label for="reg-vehiclemodel" class="sr-only">Modelo do Veículo</label>
+        <input type="text" id="reg-vehiclemodel" placeholder="Modelo (ex: BMW 1250 GS ou Civic) *" />
+        <span class="error-msg" id="err-reg-vehiclemodel"></span>
+      </div>
+      <div class="form-group">
+        <label for="reg-consumption" class="sr-only">Consumo Médio (km/L)</label>
+        <input type="number" id="reg-consumption" step="0.1" placeholder="Consumo km/L (ex: 18.5) *" />
+        <span class="error-msg" id="err-reg-consumption"></span>
+      </div>
+    </div>
+
+    <!-- Foto do Veículo (Botão compacto) -->
+    <div class="form-group compact-file-group">
+      <label for="reg-vehiclephoto" class="file-custom-label">📷 Foto do Veículo (Opcional)</label>
+      <input type="file" id="reg-vehiclephoto" accept="image/*" class="file-custom-input" />
+      <div id="photo-preview-container" class="photo-preview hidden">
+        <img id="photo-preview" src="" alt="Pré-visualização do veículo" />
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-register-submit">Cadastrar no RotaRS</button>
+  </form>
+</section>
+
+      <!-- PAINEL 3: ÁREA DO USUÁRIO LOGADO E HISTÓRICO -->
+      <section id="panel-profile" class="auth-panel hidden">
+        <div class="profile-header">
+          <div class="profile-avatar-container">
+            <img id="user-vehicle-img" src="assets/login-icon.png" alt="Foto do Veículo" />
+          </div>
+          <div>
+            <h2 id="user-display-nickname">Olá, Piloto!</h2>
+            <p id="user-display-name">Nome Completo</p>
+            <p class="badge" id="user-display-vehicle">Veículo: Moto</p>
+          </div>
+        </div>
+
+        <hr class="divider" />
+
+        <h3>Histórico de Rotas Salvas</h3>
+        <ul id="history-list" class="history-list">
+          <!-- As rotas salvas serão carregadas via JavaScript -->
+        </ul>
+
+        <button id="btn-logout" class="btn btn-secondary btn-block">Sair da Conta</button>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>&copy; 2026 RotaRS Mototurismo - Projeto Acadêmico de Desenvolvimento Web</p>
+    </div>
+  </footer>
+
+  <script src="js/mock-db.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,237 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel Administrativo - RotaRS</title>
+    <!-- Fonte Google (Poppins & Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-dark">
+
+  <!-- Header Padronizado -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="index.html" class="logo">
+        <span class="logo-bold">Rota</span><span class="logo-accent">RS</span>
+      </a>
+      <nav class="nav-menu">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="planejamento.html">Planejar Rota</a></li>
+          <li><a href="motos.html">Motos Registradas</a></li>
+          <li><a href="admin.html" class="active">Painel ADM</a></li>
+        </ul>
+      </nav>
+      <div id="user-nav-container"></div>
+    </div>
+  </header>
+
+  <!-- Conteúdo do Painel -->
+  <main class="admin-container">
+    <aside class="admin-sidebar">
+      <h2>Painel ADM</h2>
+      <nav class="admin-menu">
+        <button class="admin-tab active" data-tab="usuarios"><img src="assets/usaricon.png" class="ui-icon" alt="" aria-hidden="true"> Usuários</button>
+        <button class="admin-tab" data-tab="rotas"><img src="assets/rotaicon.png" class="ui-icon" alt="" aria-hidden="true"> Gerenciar Rotas</button>
+        <button class="admin-tab" data-tab="motos"><img src="assets/motoicon.png" class="ui-icon" alt="" aria-hidden="true"> Gerenciar Motos</button>
+        <button class="admin-tab" data-tab="postagens"><img src="assets/posticon.png" class="ui-icon" alt="" aria-hidden="true"> Postagens do Fórum</button>
+      </nav>
+    </aside>
+
+    <section class="admin-content">
+      
+      <!-- ABA 1: USUÁRIOS -->
+      <div id="tab-usuarios" class="tab-content active">
+        <div class="tab-header">
+          <h3>Usuários Cadastrados</h3>
+        </div>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Apelido</th>
+              <th>E-mail</th>
+              <th>Telefone</th>
+              <th>Veículo</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="list-usuarios"></tbody>
+        </table>
+      </div>
+
+      <!-- ABA 2: ROTAS -->
+      <div id="tab-rotas" class="tab-content">
+        <div class="tab-header">
+          <h3>Rotas Cadastradas</h3>
+          <button class="btn-primary" onclick="abrirModalRota()">+ Cadastrar Nova Rota</button>
+        </div>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Nome da Rota</th>
+              <th>Trecho</th>
+              <th>Distância</th>
+              <th>Categoria</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="list-rotas"></tbody>
+        </table>
+      </div>
+
+      <!-- ABA 3: MOTOS -->
+      <div id="tab-motos" class="tab-content">
+        <div class="tab-header">
+          <h3>Motos Cadastradas</h3>
+          <button class="btn-primary" onclick="abrirModalMoto()">+ Cadastrar Nova Moto</button>
+        </div>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Foto</th>
+              <th>Modelo</th>
+              <th>Marca</th>
+              <th>Cilindrada</th>
+              <th>Potência</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="list-motos"></tbody>
+        </table>
+      </div>
+
+      <!-- ABA 4: POSTAGENS DE USUÁRIOS -->
+      <div id="tab-postagens" class="tab-content">
+        <div class="tab-header">
+          <h3>Postagens e Avaliações</h3>
+        </div>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Autor</th>
+              <th>Conteúdo</th>
+              <th>Data</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="list-postagens"></tbody>
+        </table>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- MODAL: FORMULÁRIO DE ROTA (CRIAR / EDITAR) -->
+  <div id="modal-rota" class="modal-backdrop hidden">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 id="modal-rota-titulo">Cadastrar Rota</h2>
+        <button class="close-btn" onclick="fecharModais()">×</button>
+      </div>
+      <form id="form-rota" class="admin-form">
+        <input type="hidden" id="rota-id">
+        <label for="rota-nome">Nome da Rota:</label>
+        <input type="text" id="rota-nome" required>
+
+        <label for="rota-origem">Origem:</label>
+        <input type="text" id="rota-origem" required>
+
+        <label for="rota-destino">Destino:</label>
+        <input type="text" id="rota-destino" required>
+
+        <label for="rota-distancia">Distância (km):</label>
+        <input type="text" id="rota-distancia" placeholder="Ex: 240 km" required>
+
+        <button type="submit" class="btn-primary">Salvar Rota</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: FORMULÁRIO DE MOTO -->
+  <div id="modal-moto" class="modal-backdrop hidden">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2>Cadastrar Moto</h2>
+        <button class="close-btn" onclick="fecharModais()">×</button>
+      </div>
+      <form id="form-moto" class="admin-form">
+        <label for="moto-nome">Nome da Moto:</label>
+        <input type="text" id="moto-nome" required>
+
+        <label for="moto-marca">Marca:</label>
+        <input type="text" id="moto-marca" required>
+
+        <label for="moto-cilindrada">Cilindrada:</label>
+        <input type="text" id="moto-cilindrada" placeholder="Ex: 300 cc" required>
+
+        <label for="moto-imagem">Nome do arquivo da foto (em assets/):</label>
+        <input type="text" id="moto-imagem" placeholder="exemplo.png" required>
+
+        <button type="submit" class="btn-primary">Salvar Moto</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: DETALHES DO USUÁRIO -->
+  <div id="modal-usuario-detalhe" class="modal-backdrop hidden">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2>Dados do Usuário</h2>
+        <button class="close-btn" onclick="fecharModais()">×</button>
+      </div>
+      <div class="admin-form" style="display:grid; gap: 0.75rem;">
+        <div style="text-align:center;">
+          <img id="detalhe-foto" src="assets/login-icon.png" alt="Foto do veículo"
+            style="max-height: 140px; border-radius: 8px; object-fit: cover; margin: 0 auto;">
+        </div>
+        <div class="detalhe-linha"><span class="detalhe-label">Nome completo:</span> <span id="detalhe-nome"></span></div>
+        <div class="detalhe-linha"><span class="detalhe-label">Apelido:</span> <span id="detalhe-nickname"></span></div>
+        <div class="detalhe-linha"><span class="detalhe-label">E-mail:</span> <span id="detalhe-email"></span></div>
+        <div class="detalhe-linha"><span class="detalhe-label">Telefone:</span> <span id="detalhe-telefone"></span></div>
+        <div class="detalhe-linha"><span class="detalhe-label">Tipo de veículo:</span> <span id="detalhe-veiculo"></span></div>
+        <div class="detalhe-linha"><span class="detalhe-label">Modelo:</span> <span id="detalhe-modelo"></span></div>
+        <div class="detalhe-linha"><span class="detalhe-label">Consumo:</span> <span id="detalhe-consumo"></span></div>
+        <div class="detalhe-linha"><span class="detalhe-label">Administrador:</span> <span id="detalhe-admin"></span></div>
+        <button class="btn-primary" onclick="fecharModais()" style="margin-top:0.5rem;">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .btn-info {
+      background: #3b82f6;
+      color: #fff;
+      border: none;
+      padding: 0.3rem 0.75rem;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.82rem;
+      margin-right: 4px;
+    }
+    .btn-info:hover { background: #2563eb; }
+    .detalhe-linha {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.4rem 0;
+      border-bottom: 1px solid #e2e8f0;
+      font-size: 0.92rem;
+    }
+    .detalhe-label {
+      font-weight: 600;
+      color: #475569;
+      min-width: 140px;
+    }
+  </style>
+
+  <script src="js/auth-nav.js"></script>
+  <script src="js/rotas-data.js"></script>
+  <script src="js/motos-data.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>

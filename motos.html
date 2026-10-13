@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motos Registradas | RotaRS</title>
+    <!-- Fonte Google (Poppins & Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="light-theme">
+
+  <!-- Cabeçalho Principal -->
+  <header class="main-header">
+    <div class="container header-container">
+      <a href="index.html" class="logo">
+        <span class="logo-bold">Rota</span><span class="logo-accent">RS</span>
+      </a>
+      <nav class="nav-menu">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="planejamento.html">Planejar Rota</a></li>
+          <li><a href="motos.html" class="active">Motos Registradas</a></li>
+        </ul>
+      </nav>
+      <div id="user-nav-container"></div>
+    </div>
+  </header>
+
+  <main class="container page-wrapper">
+    
+    <!-- Cabeçalho da Página -->
+    <section class="page-header-box card">
+      <h1><img src="assets/motoicon.png" class="ui-icon" alt="" aria-hidden="true"> Guia de Motos para Viagens</h1>
+      <p>Confira a ficha técnica e o consumo real por velocidade média de 10 modelos ideais para pegar a estrada.</p>
+      
+      <!-- Barra de Filtros e Busca -->
+      <div class="motos-filter-bar">
+        <div class="search-input-wrapper">
+          <input type="text" id="motos-search" placeholder="Buscar por modelo ou marca (Ex: Lander, BMW, Tiger)..." />
+        </div>
+        
+        <div class="category-buttons">
+          <button type="button" class="btn-filter active" data-category="todas">Todas</button>
+          <button type="button" class="btn-filter" data-category="baixa">125cc - 300cc</button>
+          <button type="button" class="btn-filter" data-category="media">400cc - 700cc</button>
+          <button type="button" class="btn-filter" data-category="alta">800cc - 1200cc+</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grid onde as motos serão carregadas -->
+    <section id="motos-grid" class="motos-grid-container">
+      <!-- Cards inseridos dinamicamente pelo JS -->
+    </section>
+
+  </main>
+
+  <!-- Modal para Visualizar Ficha Técnica Completa -->
+  <div id="modal-moto" class="modal-backdrop hidden">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <h2 id="modal-moto-title">Nome da Moto</h2>
+        <button type="button" id="btn-close-moto-modal" class="close-btn">&times;</button>
+      </div>
+      <div class="modal-moto-body" id="modal-moto-content">
+        <!-- Conteúdo do modal preenchido via JS -->
+      </div>
+    </div>
+  </div>
+
+  <script src="js/motos-data.js"></script>
+  <script src="js/motos.js"></script>
+  <script src="js/auth-nav.js"></script>
+</body>
+</html>

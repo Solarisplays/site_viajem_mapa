@@ -1,0 +1,2751 @@
+/* ==========================================================================
+   1. VARIÁVEIS DE DESIGN & PALETA AZUL (Conformidade WCAG AA)
+   ========================================================================== */
+:root {
+  --primary-blue: #0d47a1;       /* Azul escuro vibrante para botões e links */
+  --primary-hover: #082d6c;      /* Hover do azul */
+  --dark-navy: #0a192f;          /* Fundo do Hero e Header */
+  --light-blue-bg: #f0f7ff;      /* Fundo suave para seções alternadas */
+  --accent-cyan: #00bcd4;        /* Detalhes de destaque */
+  --text-main: #1f2937;          /* Cor de texto principal (alto contraste) */
+  --text-muted: #4b5563;         /* Texto secundário */
+  --white: #ffffff;
+  --border-color: #e5e7eb;
+  
+  --font-main: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Poppins', system-ui, -apple-system, sans-serif;
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 8px 24px rgba(13, 71, 161, 0.15);
+}
+
+/* ==========================================================================
+   2. RESET & ESTILOS BASE
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-main);
+  color: var(--text-main);
+  background-color: var(--white);
+  line-height: 1.6;
+}
+
+/* Acessibilidade para Leitores de Tela */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ==========================================================================
+   3. CABEÇALHO (HEADER)
+   ========================================================================== */
+.main-header {
+  background-color: #0b192e; /* Azul escuro profundo padronizado */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.logo-bold {
+  color: #ffffff;
+}
+
+.logo-accent {
+  color: #00a8e8; /* Ciano do RotaRS */
+}
+
+.nav-menu ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding-bottom: 0.4rem;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-menu a:hover {
+  color: #ffffff;
+}
+
+/* Marcação da página atual com a barra ciano embaixo */
+.nav-menu a.active {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.nav-menu a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #00a8e8;
+  border-radius: 2px;
+}
+
+/* ==========================================================================
+   4. SEÇÃO HERO & ONDA (DIVIDER)
+   ========================================================================== */
+.hero {
+  position: relative;
+  background: linear-gradient(135deg, #0a192f 0%, #0d47a1 100%);
+  color: var(--white);
+  padding-top: 160px;
+  padding-bottom: 120px;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero h1 {
+  font-family: var(--font-heading);
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;
+  color: #e0e7ff;
+  margin-bottom: 2.5rem;
+}
+
+/* Form de busca rápida no topo */
+/* Container da busca e autocomplete */
+.search-box-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-input-group {
+  display: flex;
+  gap: 8px;
+}
+
+.search-input-group input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.search-input-group input:focus {
+  border-color: #0d52bf;
+  box-shadow: 0 0 0 3px rgba(13, 82, 191, 0.15);
+}
+
+/* Dropdown Autocomplete */
+.autocomplete-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  max-height: 280px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+/* Item da lista */
+.autocomplete-item {
+  position: relative;
+  overflow: hidden;
+  padding: 10px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f4f8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.15s ease;
+}
+
+.autocomplete-item:last-child {
+  border-bottom: none;
+}
+
+.autocomplete-item:hover {
+  background-color: #f0f7ff;
+}
+
+.autocomplete-info {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.autocomplete-title {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #1a252f;
+}
+
+.autocomplete-trecho {
+  font-size: 0.8rem;
+  color: #718096;
+  margin-top: 2px;
+}
+
+.autocomplete-badge {
+  position: relative;
+  z-index: 1;
+  font-size: 0.72rem;
+  background: #eef5ff;
+  color: #0d52bf;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.autocomplete-no-results {
+  padding: 12px;
+  font-size: 0.88rem;
+  color: #a0aec0;
+  text-align: center;
+}
+
+/* O divisor em formato de onda SVG */
+.wave-divider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.wave-divider svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 80px;
+}
+
+/* ==========================================================================
+   5. SEÇÕES & CARDS
+   ========================================================================== */
+.section {
+  padding: 5rem 0;
+}
+
+.bg-light {
+  background-color: var(--light-blue-bg);
+}
+
+.section-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 3.5rem auto;
+}
+
+.section-header h2 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--dark-navy);
+  margin-bottom: 0.5rem;
+}
+
+.section-header p {
+  color: var(--text-muted);
+}
+
+/* Grids */
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+
+.grid-3 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.grid-4 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+
+/* Cards */
+.card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+}
+
+.feature-card {
+  padding: 2rem;
+  text-align: center;
+}
+
+.card-icon {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--dark-navy);
+  margin-bottom: 0.75rem;
+}
+
+.feature-card p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* Card de Destinos com gradiente simulando foto */
+.card-media {
+  height: 140px;
+  background-size: cover;
+  background-position: center;
+}
+
+.media-gramado { background: linear-gradient(135deg, #1e3a8a, #3b82f6); }
+.media-bento   { background: linear-gradient(135deg, #065f46, #10b981); }
+.media-canions { background: linear-gradient(135deg, #9a3412, #f97316); }
+.media-missoes { background: linear-gradient(135deg, #854d0e, #eab308); }
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.card-body h3 {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  color: var(--dark-navy);
+}
+
+.card-body p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin: 0.5rem 0 1.2rem 0;
+}
+
+.card-link {
+  color: var(--primary-blue);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+.card-link:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   6. RODAPÉ (FOOTER) & RESPONSIVIDADE
+   ========================================================================== */
+.footer {
+  background-color: var(--dark-navy);
+  color: #9ca3af;
+  padding: 2.5rem 0;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.footer a {
+  color: var(--white);
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+.footer a:hover {
+  color: var(--accent-cyan);
+}
+
+/* Adaptações para Celular (Mobile First / Responsive) */
+@media (max-width: 768px) {
+  .hero h1 { font-size: 2rem; }
+  .hero-subtitle { font-size: 1rem; }
+  
+  .quick-search {
+    flex-direction: column;
+    padding: 12px;
+  }
+
+  .header-container {
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    height: auto;
+    padding: 1rem;
+  }
+  
+  .hero { padding-top: 180px; }
+}
+
+/* ==========================================================================
+   7. PÁGINA DE LOGIN, CADASTRO E PERFIL
+   ========================================================================== */
+.main-auth {
+  padding-top: 120px;
+  padding-bottom: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+.auth-wrapper {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-hover);
+  border: 1px solid var(--border-color);
+  width: 100%;
+  max-width: 550px;
+  overflow: hidden;
+}
+
+.auth-tabs {
+  display: flex;
+  background: var(--light-blue-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  background: transparent;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.tab-btn.active {
+  background: var(--white);
+  color: var(--primary-blue);
+  border-bottom: 3px solid var(--primary-blue);
+}
+
+.auth-panel {
+  padding: 2rem;
+}
+
+.auth-panel.hidden {
+  display: none;
+}
+
+.auth-panel h2 {
+  font-family: var(--font-heading);
+  color: var(--dark-navy);
+  margin-bottom: 0.5rem;
+}
+
+.form-subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 0.4rem;
+  color: var(--text-main);
+}
+
+.form-group input,
+.form-group select {
+  padding: 0.75rem 1rem;
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-family: var(--font-main);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--primary-blue);
+}
+
+/* Mensagens de Erro da Validação */
+.form-group input.invalid,
+.form-group select.invalid {
+  border-color: #dc2626;
+  background-color: #fef2f2;
+}
+
+.error-msg {
+  color: #dc2626;
+  font-size: 0.8rem;
+  margin-top: 0.3rem;
+  min-height: 1.1rem;
+}
+
+.btn-block {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.btn-secondary {
+  background-color: #e5e7eb;
+  color: var(--text-main);
+}
+
+.btn-secondary:hover {
+  background-color: #d1d5db;
+}
+
+/* Foto Preview e Perfil */
+.photo-preview {
+  margin-top: 0.8rem;
+  width: 100%;
+  max-height: 180px;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--primary-blue);
+}
+
+.photo-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-header {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.profile-avatar-container {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--primary-blue);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #eef4fb; /* fundo suave para ícones com transparência */
+}
+
+.profile-avatar-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* contém a imagem inteira sem cortar */
+  padding: 6px;        /* espaçamento interno para o ícone não tocar a borda */
+  box-sizing: border-box;
+}
+
+/* Quando for foto real do veículo (não ícone padrão) */
+.profile-avatar-container img[data-type="photo"] {
+  object-fit: cover;
+  padding: 0;
+}
+
+.badge {
+  display: inline-block;
+  background: var(--light-blue-bg);
+  color: var(--primary-blue);
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 0.4rem;
+}
+
+.divider {
+  margin: 1.5rem 0;
+  border: 0;
+  border-top: 1px solid var(--border-color);
+}
+
+.history-list {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.5rem;
+}
+
+.btn-danger-sm {
+  background: #fee2e2;
+  color: #991b1b;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.btn-danger-sm:hover {
+  background: #fca5a5;
+}
+/* ==========================================================================
+   ESTILO DE CADASTRO COMPACTO (ESTILO FACEBOOK SIGN UP)
+   ========================================================================== */
+.auth-panel {
+  padding: 1.5rem;
+}
+
+.panel-header-compact h2 {
+  font-size: 1.5rem;
+  color: var(--dark-navy);
+  margin-bottom: 0.2rem;
+}
+
+.panel-header-compact .form-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.2rem;
+}
+
+/* Layout em Duas Colunas Compactas */
+.form-row {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.form-row .form-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+/* Inputs Compactos com Cores Suaves */
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #ccd0d5;
+  background-color: #f5f6f8;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  font-family: var(--font-main);
+  outline: none;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--primary-blue);
+  background-color: var(--white);
+}
+
+/* Tratamento das Mensagens de Erro para não quebrar a altura */
+.error-msg {
+  color: #dc2626;
+  font-size: 0.72rem;
+  display: block;
+  min-height: 0.9rem;
+  margin-top: 0.15rem;
+}
+
+.form-group input.invalid,
+.form-group select.invalid {
+  border-color: #dc2626;
+  background-color: #fef2f2;
+}
+
+/* Campo de Upload de Foto Estilizado */
+.compact-file-group {
+  margin-top: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.file-custom-label {
+  display: inline-block;
+  font-size: 0.82rem;
+  color: var(--primary-blue);
+  background: var(--light-blue-bg);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px dashed var(--primary-blue);
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+}
+
+.file-custom-input {
+  display: none;
+}
+
+/* Botão Verde de Cadastrar de Destaque */
+.btn-register-submit {
+  width: 100%;
+  background-color: #00a884;
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.65rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-register-submit:hover {
+  background-color: #008f70;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Responsividade para Celulares */
+@media (max-width: 520px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+}
+
+/* ==========================================================================
+   8. MENU DE USUÁRIO DINÂMICO (DROPDOWN DA NAV)
+   ========================================================================== */
+.user-nav-container {
+  display: flex;
+  align-items: center;
+}
+
+/* Botões para Usuário Não Logado */
+.auth-btns {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.btn-outline-sm {
+  color: var(--white);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  padding: 0.4rem 0.9rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.btn-outline-sm:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--white);
+}
+
+.btn-primary-sm {
+  background-color: var(--primary-blue);
+  color: var(--white);
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.btn-primary-sm:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Botão do Usuário Logado */
+.user-menu-wrapper {
+  position: relative;
+}
+
+.user-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0.35rem 0.75rem;
+  border-radius: 30px;
+  color: var(--white);
+  cursor: pointer;
+  font-family: var(--font-main);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.user-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.user-avatar-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--primary-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.arrow-icon {
+  font-size: 0.7rem;
+  opacity: 0.7;
+}
+
+/* Menu Dropdown Suspenso */
+.user-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 200px;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 0;
+  z-index: 100;
+  display: none; /* Oculto por padrão */
+  flex-direction: column;
+}
+
+.user-dropdown.show {
+  display: flex; /* Exibe ao clicar */
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.2rem;
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.dropdown-item:hover {
+  background-color: var(--light-blue-bg);
+  color: var(--primary-blue);
+}
+
+.dropdown-divider {
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  margin: 0.4rem 0;
+}
+
+.logout-item {
+  color: #dc2626;
+}
+
+.logout-item:hover {
+  background-color: #fef2f2;
+  color: #b91c1c;
+}
+
+/* ==========================================================================
+   PÁGINA DE PERFIL & DESTAQUE DE FOTOS
+   ========================================================================== */
+.profile-container {
+  padding-top: 2rem;
+  padding-bottom: 3rem;
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 1.5rem;
+}
+
+.profile-card {
+  background-color: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Sidebar do Perfil */
+.sidebar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  height: fit-content;
+}
+
+.profile-avatar-large {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+  color: var(--white);
+  font-size: 2.8rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.profile-name {
+  font-size: 1.4rem;
+  color: var(--dark-navy);
+  margin-bottom: 0.2rem;
+}
+
+.profile-nickname {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.profile-bio {
+  font-size: 0.88rem;
+  color: var(--text-main);
+  line-height: 1.4;
+  background-color: #f8fafc;
+  padding: 0.8rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.card-divider {
+  width: 100%;
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  margin: 1.2rem 0;
+}
+
+.user-info-list {
+  list-style: none;
+  width: 100%;
+  text-align: left;
+  font-size: 0.88rem;
+}
+
+.user-info-list li {
+  margin-bottom: 0.6rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.vehicle-mini-card {
+  width: 100%;
+  background: #f1f5f9;
+  border-radius: 8px;
+  padding: 0.9rem;
+  text-align: left;
+  font-size: 0.85rem;
+}
+
+.vehicle-mini-card h3 {
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  color: var(--dark-navy);
+}
+
+.btn-edit-profile {
+  margin-top: 1.2rem;
+  width: 100%;
+  background-color: var(--primary-blue);
+  color: var(--white);
+  border: none;
+  padding: 0.65rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-edit-profile:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Coluna da Direita (Highlight estilo Steam Capturas) */
+.profile-main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.card-header h2 {
+  font-size: 1.2rem;
+  color: var(--dark-navy);
+}
+
+.badge-count {
+  background-color: var(--light-blue-bg);
+  color: var(--primary-blue);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+}
+
+/* Galeria Grid Destaque Steam */
+.steam-gallery-grid {
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+  gap: 8px;
+  background-color: #1a202c;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.gallery-featured {
+  position: relative;
+  height: 250px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.gallery-featured img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featured-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  color: #fff;
+  padding: 0.8rem;
+  font-size: 0.85rem;
+}
+
+.gallery-thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 250px;
+}
+
+.thumb-item {
+  flex: 1;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.thumb-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.more-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* Item de Rota */
+.routes-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.route-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  transition: background 0.15s;
+}
+
+.route-item:hover {
+  background-color: #f8fafc;
+}
+
+.route-icon {
+  font-size: 1.5rem;
+  background: var(--light-blue-bg);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.route-details {
+  flex: 1;
+}
+
+.route-details h4 {
+  font-size: 0.95rem;
+  color: var(--dark-navy);
+  margin-bottom: 0.2rem;
+}
+
+.route-details p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.tag-completed {
+  background-color: #dcfce7;
+  color: #15803d;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+}
+
+.hidden-info-msg {
+  background-color: #fef2f2;
+  color: #991b1b;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* Estilos do Modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1rem;
+}
+
+.modal-card {
+  background: #fff;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 12px;
+  padding: 1.5rem;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.form-section-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--dark-navy);
+  margin: 1rem 0 0.6rem 0;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 0.3rem;
+}
+
+.privacy-switches {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.switch-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 1.2rem;
+}
+
+.btn-secondary {
+  background: #e2e8f0;
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .profile-grid {
+    grid-template-columns: 1fr;
+  }
+  .steam-gallery-grid {
+    grid-template-columns: 1fr;
+  }
+  .gallery-thumbs {
+    flex-direction: row;
+    height: 80px;
+  }
+}
+
+/* ==========================================================================
+   PERFIL E EDIÇÃO (TEMA CLARO ROTA RS)
+   ========================================================================== */
+body.light-theme {
+  background-color: #f4f6f9;
+  color: #2c3e50;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  background: rgba(10, 25, 47, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: var(--white);
+}
+
+.logo-bold { font-weight: 700; }
+.logo-accent { color: var(--accent-cyan); font-weight: 700; }
+
+.nav-menu ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-menu a {
+  color: #d1d5db;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+  color: var(--white);
+  border-bottom: 2px solid var(--accent-cyan);
+  padding-bottom: 4px;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.logo-bold {
+  color: #ffffff;
+}
+
+.logo-accent {
+  color: #00a8e8; /* Ciano do RotaRS */
+}
+
+.nav-menu ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding-bottom: 0.4rem;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-menu a:hover {
+  color: #ffffff;
+}
+
+/* Marcação da página atual com a barra ciano embaixo */
+.nav-menu a.active {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.nav-menu a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #00a8e8;
+  border-radius: 2px;
+}
+
+.logo-bold { font-weight: 800; font-size: 1.4rem; color: #fff; }
+.logo-accent { font-weight: 800; font-size: 1.4rem; color: #008ecf; }
+
+.page-wrapper {
+  max-width: 1050px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+/* Layout de Perfil */
+.profile-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 1.5rem;
+}
+
+.avatar-circle {
+  width: 90px;
+  height: 90px;
+  background: linear-gradient(135deg, #008ecf, #0d52bf);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0 auto 0.8rem auto;
+}
+
+.profile-card {
+  text-align: center;
+}
+
+.profile-card h1 {
+  font-size: 1.4rem;
+  margin-bottom: 0.2rem;
+  color: #1a252f;
+}
+
+.profile-handle {
+  color: #718096;
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.bio-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.88rem;
+  color: #4a5568;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.info-list li {
+  padding: 0.4rem 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #edf2f7;
+}
+
+.vehicle-card {
+  background: #f0f7ff;
+  border: 1px solid #cce3fd;
+  border-radius: 6px;
+  padding: 0.85rem;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.vehicle-card h3 {
+  font-size: 0.95rem;
+  color: #0d52bf;
+  margin-bottom: 0.4rem;
+}
+
+/* Galeria de Fotos Real */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.card-header h2 {
+  font-size: 1.15rem;
+  color: #1a252f;
+}
+
+.photo-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.gallery-thumb {
+  position: relative;
+  height: 130px;
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid #cbd5e0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.gallery-thumb:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+.gallery-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-thumb-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.5rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* TELA DE EDIÇÃO ESTILO STEAM (TEMA CLARO) */
+.edit-steam-container {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.back-link {
+  color: #0d52bf;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.88rem;
+  display: inline-block;
+  margin-bottom: 1.5rem;
+}
+
+.steam-nav-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  text-align: left;
+  padding: 0.75rem 1rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #4a5568;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tab-btn:hover {
+  background: #edf2f7;
+  color: #1a252f;
+}
+
+.tab-btn.active {
+  background: #eef5ff;
+  color: #0d52bf;
+  border-left: 4px solid #0d52bf;
+}
+
+.edit-main-content h2 {
+  font-size: 1.5rem;
+  color: #1a252f;
+  margin-bottom: 0.2rem;
+}
+
+.panel-subtitle {
+  font-size: 0.88rem;
+  color: #718096;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #edf2f7;
+  padding-bottom: 0.8rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: #4a5568;
+  margin-bottom: 0.4rem;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  background: #f8fafc;
+  border: 1px solid #cbd5e0;
+  color: #2d3748;
+  padding: 0.65rem 0.85rem;
+  border-radius: 6px;
+  outline: none;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #0d52bf;
+  background: #ffffff;
+}
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.custom-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  color: #2d3748;
+}
+
+/* Botões */
+.btn {
+  padding: 0.65rem 1.25rem;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s;
+}
+
+.btn-primary { background: #0d52bf; color: #fff; }
+.btn-primary:hover { background: #0a429b; }
+
+.btn-secondary { background: #e2e8f0; color: #2d3748; }
+.btn-secondary:hover { background: #cbd5e0; }
+
+.btn-full { width: 100%; }
+.btn-sm { padding: 0.4rem 0.8rem; font-size: 0.82rem; }
+
+/* Modais e Lightbox */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-dialog {
+  background: #ffffff;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 450px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #a0aec0;
+  cursor: pointer;
+}
+
+.lightbox-container {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lightbox-container img {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -35px;
+  right: 0;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 2.2rem;
+  cursor: pointer;
+}
+
+.lightbox-caption {
+  color: #ffffff;
+  margin-top: 0.8rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+}
+
+.hidden { display: none !important; }
+.privacy-tag { background: #fff5f5; color: #e53e3e; padding: 0.6rem; border-radius: 6px; font-size: 0.85rem; }
+
+/* ==========================================================================
+   PÁGINA DE MOTOS REGISTRADAS
+   ========================================================================== */
+.main-header {
+  background-color: #0b192e; /* Azul escuro profundo padronizado */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.85rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.4rem;
+  font-weight: 800;
+  text-decoration: none;
+  letter-spacing: -0.5px;
+}
+
+.logo-bold {
+  color: #ffffff;
+}
+
+.logo-accent {
+  color: #00a8e8; /* Ciano do RotaRS */
+}
+
+.nav-menu ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu a {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  padding-bottom: 0.4rem;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.nav-menu a:hover {
+  color: #ffffff;
+}
+
+/* Marcação da página atual com a barra ciano embaixo */
+.nav-menu a.active {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.nav-menu a.active::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #00a8e8;
+  border-radius: 2px;
+}
+
+.motos-filter-bar {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.search-input-wrapper {
+  width: 100%;
+  max-width: 500px;
+}
+
+.search-input-wrapper input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+.category-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.btn-filter {
+  background: #edf2f7;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #4a5568;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-filter.active, .btn-filter:hover {
+  background: #0d52bf;
+  color: #ffffff;
+}
+
+/* Grid de Cards */
+.motos-grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.moto-card-img {
+  width: 100%;
+  height: 130px; /* Reduzido de 180px para 130px */
+  object-fit: contain; /* Garante que a moto apareça inteira sem dar zoom/corte */
+  padding: 12px;
+  background-color: #f8fafc; /* Fundo suave para emoldurar a imagem */
+  border-bottom: 1px solid #edf2f7;
+}
+
+.moto-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.moto-card-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.moto-card-body {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.moto-card-title {
+  font-size: 1.2rem;
+  color: #1a252f;
+  margin-bottom: 0.3rem;
+}
+
+.moto-card-badge {
+  display: inline-block;
+  align-self: flex-start;
+  background: #eef5ff;
+  color: #0d52bf;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+}
+
+.moto-quick-specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  background: #f8fafc;
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  margin-bottom: 1rem;
+}
+
+/* Consumo por Velocidade */
+.moto-consumption-box {
+  background: #f0f7ff;
+  border-left: 3px solid #0d52bf;
+  padding: 0.6rem 0.8rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.moto-consumption-box h4 {
+  font-size: 0.82rem;
+  color: #0d52bf;
+  margin-bottom: 0.4rem;
+}
+
+.consumption-list {
+  font-size: 0.8rem;
+  color: #2d3748;
+}
+
+.consumption-list div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 2px;
+}
+
+/* Modal de Detalhes da Moto */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-backdrop.hidden {
+  display: none;
+}
+
+/* Caixa principal do Popup (Reduzida) */
+.modal-dialog.modal-lg {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 480px; /* Reduzido de 650px para 480px */
+  max-height: 85vh; /* Limita a altura a 85% da tela */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Cabeçalho do Popup */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.2rem;
+  border-bottom: 1px solid #edf2f7;
+  background: #f8fafc;
+}
+
+.modal-header h2 {
+  font-size: 1.1rem;
+  color: #1a252f;
+  margin: 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #a0aec0;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.close-btn:hover {
+  color: #e53e3e;
+}
+
+/* Corpo do Popup com rola de conteúdo interna se necessário */
+.modal-moto-body {
+  padding: 1rem 1.2rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Imagem pequena e centralizada dentro do popup */
+.modal-moto-img {
+  width: auto;
+  max-width: 200px;
+  height: 110px;
+  object-fit: contain;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Tabela de especificações bem enxuta */
+.specs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.specs-table td {
+  padding: 0.35rem 0.5rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.specs-table td:first-child {
+  font-weight: 600;
+  color: #64748b;
+  width: 45%;
+}
+
+/* Ajustes no bloco de consumo dentro do popup */
+.modal-moto-body .moto-consumption-box {
+  margin-bottom: 0;
+  padding: 0.5rem 0.75rem;
+}
+
+.modal-moto-body .moto-consumption-box h4 {
+  font-size: 0.8rem;
+  margin-bottom: 0.3rem;
+}
+
+.modal-moto-body .consumption-list {
+  font-size: 0.78rem;
+}
+
+/*
+==========================================================================
+Layout do Painel Admin
+========================================================================== 
+*/
+.admin-container {
+  display: flex;
+  max-width: 1200px;
+  margin: 2rem auto;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.admin-sidebar {
+  width: 250px;
+  background: #0b192e;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.admin-sidebar h2 {
+  color: #fff;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.admin-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.admin-tab {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  padding: 0.8rem;
+  text-align: left;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.admin-tab:hover, .admin-tab.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: #00a8e8;
+}
+
+.admin-content {
+  flex: 1;
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  color: #1a252f;
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+.tab-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Tabelas */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.admin-table th, .admin-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.admin-table th {
+  background-color: #f8fafc;
+  color: #475569;
+}
+
+/* Botões de Ação */
+.btn-primary { background: #00a8e8; color: #fff; border: none; padding: 0.5rem 1rem; border-radius: 6px; cursor: pointer; }
+.btn-warning { background: #ed8936; color: #fff; border: none; padding: 0.3rem 0.6rem; border-radius: 4px; cursor: pointer; }
+.btn-danger { background: #e53e3e; color: #fff; border: none; padding: 0.3rem 0.6rem; border-radius: 4px; cursor: pointer; }
+
+/* Formulários do Modal */
+.admin-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding: 1rem 0;
+}
+
+.admin-form input {
+  padding: 0.5rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+}
+/* Estilos para o icone de moto no autocomplete */
+.moto-icon-fade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: auto;
+  z-index: 0;
+  opacity: 0.15;
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to right, black 30%, transparent 100%);
+  mask-image: linear-gradient(to right, black 30%, transparent 100%);
+}
+
+
+
+
+
+/* Novas imagens de features */
+.feature-icon-img {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+
+/* Ajuste dos cards de feature para imagem com fade azul */
+.feature-card {
+  padding: 0;
+  background-color: #0b192e;
+  border: none;
+}
+.feature-card h3 {
+  color: #ffffff;
+  margin-top: -10px;
+  position: relative;
+  z-index: 2;
+}
+.feature-card p {
+  color: #cbd5e1;
+  padding: 0 1.5rem 2rem 1.5rem;
+}
+.card-icon {
+  margin: 0;
+  width: 100%;
+  height: 220px;
+  display: block;
+}
+.feature-icon-img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: 0 !important;
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, black 80%);
+  mask-image: linear-gradient(to top, transparent 0%, black 80%);
+}
+
+
+/* Ajuste dos cards de destino para imagem com fade azul */
+.destination-card {
+  background-color: #0b192e;
+  border: none;
+}
+.destination-card .card-body {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+  margin-top: -10px;
+  position: relative;
+  z-index: 2;
+}
+.destination-card .card-body h3 {
+  color: #ffffff;
+}
+.destination-card .card-body p {
+  color: #cbd5e1;
+}
+.destination-card .card-link {
+  color: #00bcd4;
+}
+.destination-card .card-link:hover {
+  color: #ffffff;
+}
+.card-media {
+  height: 200px;
+  -webkit-mask-image: linear-gradient(to top, transparent 0%, black 80%);
+  mask-image: linear-gradient(to top, transparent 0%, black 80%);
+}
+.media-gramado { background-image: url('../assets/paisagens/gramado.jpg'); background-color: transparent; }
+.media-bento   { background-image: url('../assets/paisagens/valedosvinhedos.jpg'); background-color: transparent; }
+.media-canions { background-image: url('../assets/paisagens/serrariodorastro.jpg'); background-color: transparent; }
+.media-missoes { background-image: url('../assets/paisagens/missoes.jpg'); background-color: transparent; }
+
+
+.destination-card { padding: 0; }
+
+/* Carrossel de Hist�rias */
+.carousel-section {
+  background: var(--white);
+  padding: 4rem 0;
+  overflow: hidden;
+}
+.carousel-container {
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  height: 380px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
+}
+.carousel-track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+  opacity: 0;
+  z-index: 1;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  transform: translateX(-50%) scale(0.6);
+}
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.5s ease;
+  filter: brightness(0.3) grayscale(0.7);
+}
+.carousel-slide.active {
+  opacity: 1;
+  z-index: 3;
+  transform: translateX(-50%) scale(1);
+}
+.carousel-slide.active img {
+  filter: brightness(1) grayscale(0);
+}
+.carousel-slide.prev {
+  opacity: 1;
+  z-index: 2;
+  transform: translateX(-90%) scale(0.8);
+}
+.carousel-slide.next {
+  opacity: 1;
+  z-index: 2;
+  transform: translateX(-10%) scale(0.8);
+}
+
+.carousel-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(11, 25, 46, 0.9);
+  color: white;
+  padding: 1.5rem;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+}
+.carousel-slide.active:hover .carousel-overlay {
+  transform: translateY(0);
+}
+.carousel-overlay h3 {
+  color: #00bcd4;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-heading);
+}
+.carousel-overlay p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #e2e8f0;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(11, 25, 46, 0.8);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.2);
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.carousel-btn:hover {
+  background: #0d47a1;
+  transform: translateY(-50%) scale(1.1);
+}
+.prev-btn { left: 5px; }
+.next-btn { right: 5px; }
+
+/* ========================================
+   LIGHTBOX ESTILO STEAM
+   ======================================== */
+.lb-steam-wrapper {
+  display: flex;
+  position: relative;
+  background: #0b192e;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 95vw;
+  max-height: 90vh;
+  width: 1100px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+}
+
+/* Bot�o fechar */
+.lb-close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 10;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  cursor: pointer;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.lb-close-btn:hover { background: #c0392b; }
+
+/* Lado Esquerdo � Imagem */
+.lb-image-side {
+  flex: 1;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  max-height: 90vh;
+  overflow: hidden;
+}
+.lb-image-side img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Lado Direito � Painel */
+.lb-info-side {
+  width: 300px;
+  flex-shrink: 0;
+  background: #0f2a45;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  overflow-y: auto;
+}
+
+/* Header do usu�rio */
+.lb-user-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: #0b192e;
+}
+.lb-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 4px;
+  background: #1c4b82;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+.lb-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.lb-username {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin: 0;
+}
+.lb-user-status {
+  color: #00bcd4;
+  font-size: 0.78rem;
+  margin: 2px 0 0;
+}
+
+/* Divisor */
+.lb-divider {
+  border: none;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin: 0;
+}
+
+/* Se��o de Legenda */
+.lb-caption-section {
+  padding: 14px 16px;
+  flex: 1;
+}
+.lb-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #8bacc8;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+.lb-caption-text {
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+.lb-caption-input {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 4px;
+  border: 1px solid #1c4b82;
+  background: #0b192e;
+  color: #fff;
+  font-size: 0.9rem;
+  outline: none;
+  margin-top: 4px;
+}
+.lb-caption-input:focus { border-color: #00bcd4; }
+
+/* A��es do Dono */
+.lb-owner-actions {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.lb-action-btn {
+  display: block;
+  width: 100%;
+  padding: 9px 14px;
+  background: #1c3a5e;
+  color: #c7d8eb;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  text-align: left;
+  transition: background 0.15s, color 0.15s;
+}
+.lb-action-btn:hover { background: #234f80; color: #fff; }
+.lb-action-primary { background: #0d47a1; color: #fff; }
+.lb-action-primary:hover { background: #1565c0; }
+.lb-action-danger { color: #fc8181; }
+.lb-action-danger:hover { background: #7f1d1d; color: #fff; }
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .lb-steam-wrapper { flex-direction: column; width: 95vw; }
+  .lb-info-side { width: 100%; }
+}
+
+/* ==========================================================================
+   PÁGINA DE PLANEJAMENTO DE ROTAS
+   ========================================================================== */
+.plan-hero {
+  background: linear-gradient(135deg, #0a192f 0%, #0d47a1 100%);
+  color: #fff;
+  padding: 3.5rem 0 2.5rem;
+  text-align: center;
+}
+.plan-hero h1 { font-family: var(--font-heading); font-size: 2.2rem; margin-bottom: .5rem; }
+.plan-hero p  { color: #e0e7ff; max-width: 620px; margin: 0 auto; }
+
+.plan-steps {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding: 0;
+}
+.plan-steps li { display: flex; align-items: center; gap: .5rem; color: #94a3b8; font-weight: 600; font-size: .95rem; }
+.plan-steps li span {
+  width: 30px; height: 30px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 2px solid #94a3b8; font-size: .85rem;
+}
+.plan-steps li.active { color: #fff; }
+.plan-steps li.active span { background: #00a8e8; border-color: #00a8e8; color: #fff; }
+
+.plan-section { padding: 3rem 0 4rem; }
+
+.plan-toolbar {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 1rem; flex-wrap: wrap; margin-bottom: 1.75rem;
+}
+.plan-toolbar h2 { font-family: var(--font-heading); color: var(--dark-navy); font-size: 1.6rem; }
+.plan-filter {
+  flex: 0 1 360px; padding: .7rem 1rem;
+  border: 1px solid #cbd5e0; border-radius: 8px; font-size: .95rem; outline: none;
+}
+.plan-filter:focus { border-color: #0d52bf; box-shadow: 0 0 0 3px rgba(13,82,191,.15); }
+
+.plan-routes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+
+.plan-route-card {
+  background: #0b192e; color: #cbd5e1;
+  border-radius: var(--radius-lg); padding: 1.5rem;
+  display: flex; flex-direction: column; gap: .6rem;
+  box-shadow: var(--shadow); cursor: pointer;
+  border: 2px solid transparent;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.plan-route-card:hover, .plan-route-card:focus { transform: translateY(-5px); box-shadow: var(--shadow-hover); border-color: #00a8e8; outline: none; }
+.plan-route-card.selected { border-color: #00a8e8; }
+.plan-route-card h3 { font-family: var(--font-heading); color: #fff; font-size: 1.15rem; }
+.plan-route-card .btn { margin-top: auto; }
+
+.plan-badge {
+  align-self: flex-start; font-size: .72rem; font-weight: 600;
+  background: rgba(0,168,232,.15); color: #00bcd4;
+  padding: 3px 10px; border-radius: 12px;
+}
+.plan-trecho { font-size: .9rem; color: #94a3b8; }
+.plan-meta   { display: flex; gap: 1rem; font-size: .85rem; color: #e2e8f0; }
+.plan-desc   { font-size: .88rem; line-height: 1.5; }
+.plan-empty  { color: var(--text-muted); grid-column: 1 / -1; text-align: center; padding: 2rem; }
+
+/* Etapa 2 */
+.plan-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
+.plan-col    { display: flex; flex-direction: column; gap: 1.5rem; }
+
+.plan-card {
+  background: #fff; border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow); padding: 1.5rem;
+}
+.plan-card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.plan-card-header h3 { font-family: var(--font-heading); color: var(--dark-navy); font-size: 1.1rem; }
+
+#rota-selecionada-info { background: #0b192e; border-radius: 10px; padding: 1.1rem; display: flex; flex-direction: column; gap: .4rem; }
+.plan-sel-nome { color: #fff; font-family: var(--font-heading); font-size: 1.1rem; }
+
+.plan-link-btn {
+  background: none; border: none; color: var(--primary-blue);
+  font-weight: 600; cursor: pointer; font-size: .88rem; padding: 0; margin-bottom: .75rem;
+}
+.plan-link-btn:hover { text-decoration: underline; }
+
+.plan-hint {
+  background: var(--light-blue-bg); border-left: 3px solid var(--primary-blue);
+  padding: .7rem .9rem; border-radius: 6px; font-size: .88rem; margin-bottom: 1rem;
+}
+.plan-hint a { color: var(--primary-blue); font-weight: 600; }
+
+.user-moto-box {
+  background: linear-gradient(135deg, #0a192f, #0d47a1);
+  color: #fff; border-radius: 10px; padding: 1rem 1.2rem; margin-bottom: .75rem;
+}
+.user-moto-label  { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: #93c5fd; }
+.user-moto-modelo { font-family: var(--font-heading); font-size: 1.2rem; margin: .2rem 0; }
+.user-moto-consumo{ color: #00e5ff; font-weight: 600; }
+
+.plan-card .form-group select { width: 100%; }
+.btn-full { width: 100%; }
+
+/* Resultado */
+.plan-placeholder { text-align: center; color: var(--text-muted); padding: 2.5rem 1.5rem; border-style: dashed; }
+.result-sub { color: var(--text-muted); font-size: .9rem; margin-bottom: 1rem; }
+.result-highlight {
+  background: #0b192e; color: #cbd5e1; border-radius: 10px;
+  padding: 1.2rem; text-align: center; margin-bottom: 1rem;
+}
+.result-highlight span   { display: block; font-size: .85rem; }
+.result-highlight strong { display: block; color: #00e5ff; font-size: 2rem; font-family: var(--font-heading); }
+.result-item {
+  display: flex; justify-content: space-between;
+  padding: .6rem 0; border-bottom: 1px solid var(--border-color); font-size: .93rem;
+}
+.result-item span   { color: var(--text-muted); }
+.result-item strong { color: var(--dark-navy); }
+.result-alert { margin-top: 1rem; padding: .8rem 1rem; border-radius: 8px; font-size: .9rem; }
+.result-alert.ok   { background: #ecfdf5; color: #065f46; }
+.result-alert.warn { background: #fff7ed; color: #9a3412; }
+
+@media (max-width: 860px) {
+  .plan-layout { grid-template-columns: 1fr; }
+  .plan-steps { gap: 1rem; }
+  .plan-hero h1 { font-size: 1.7rem; }
+}
+
+/* ==========================================================================
+   ÍCONES DE INTERFACE (.ui-icon)
+   ========================================================================== */
+.ui-icon {
+  width: 1.25em;
+  height: 1.25em;
+  vertical-align: -0.2em;
+  object-fit: contain;
+  display: inline-block;
+  margin-right: 0.35rem;
+}
+
+.admin-tab .ui-icon {
+  width: 1.35em;
+  height: 1.35em;
+  margin-right: 0.5rem;
+}
+
+.route-icon .ui-icon {
+  width: 28px;
+  height: 28px;
+  margin-right: 0;
+  vertical-align: middle;
+}
+
+/* Padronização tipográfica e visual da Logo RotaRS */
+.logo {
+  font-family: var(--font-heading), 'Poppins', system-ui, -apple-system, sans-serif !important;
+  font-size: 1.4rem !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+  letter-spacing: -0.5px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.logo-bold {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+
+.logo-accent {
+  color: #00a8e8 !important;
+  font-weight: 800 !important;
+}

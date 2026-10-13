@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Planeje suas viagens de moto pelo Rio Grande do Sul com rotas, cálculo de combustível e pontos de parada." />
+  <title>RotaRS - Mototurismo no Rio Grande do Sul</title>
+  
+  <!-- Fonte Google (Poppins & Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  
+  <!-- Estilos Globais -->
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="js/carousel.js" defer></script>
+</head>
+<body>
+
+<header class="main-header">
+  <div class="container header-container">
+    <a href="index.html" class="logo">
+      <span class="logo-bold">Rota</span><span class="logo-accent">RS</span>
+    </a>
+    <nav class="nav-menu">
+      <ul>
+        <li><a href="index.html" class="active">Início</a></li>
+        <li><a href="planejamento.html">Planejar Rota</a></li>
+        <li><a href="motos.html">Motos Registradas</a></li>
+      </ul>
+    </nav>
+    <div id="user-nav-container"></div>
+  </div>
+</header>
+
+
+  <main>
+    <!-- Seção Hero (Topo com Fundo Azul e Busca) -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container hero-content">
+        <h1 id="hero-title">Explore o RS sobre Duas Rodas</h1>
+        <p class="hero-subtitle">
+          Calcule o consumo da sua moto, descubra onde abastecer e encontre os melhores pontos para descansar.
+        </p>
+
+        <!-- Barra de Ação/Busca Rápida -->
+        <div class="search-box-wrapper">
+  <div class="search-input-group">
+    <input 
+      type="text" 
+      id="home-search-input" 
+      placeholder="Para onde você quer ir? Ex: Gramado, Rota Romântica..." 
+      autocomplete="off" 
+    />
+    <button type="button" id="home-search-btn" class="btn btn-primary">Buscar</button>
+  </div>
+
+  <!-- Menu Dropdown para Autocompletar -->
+  <div id="autocomplete-list" class="autocomplete-dropdown hidden"></div>
+  
+</div>
+      </div>
+
+      <!-- Divisor em Formato de Onda (SVG) -->
+      <div class="wave-divider" aria-hidden="true">
+        <svg viewBox="0 0 1440 180" preserveAspectRatio="none">
+          <path fill="#ffffff" d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,90.7C672,85,768,107,864,117.3C960,128,1056,128,1152,112C1248,96,1344,64,1392,48L1440,32L1440,180L1392,180C1344,180,1248,180,1152,180C1056,180,960,180,864,180C768,180,672,180,576,180C480,180,384,180,288,180C192,180,96,180,48,180L0,180Z"></path>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Seção: Como Funciona (Pillars de Ajuda ao Motociclista) -->
+    <section class="section features" aria-labelledby="features-title">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="features-title">Como o RotaRS Facilita sua Viagem</h2>
+          <p>Tudo o que você precisa para pilotar com tranquilidade e sem surpresas no trajeto.</p>
+        </div>
+
+        <div class="grid grid-3">
+          <article class="card feature-card">
+            <div class="card-icon" aria-hidden="true">
+              <img src="assets/iconsindex/postogasolina.jpg" alt="Posto de gasolina" class="feature-icon-img">
+            </div>
+            <h3>Cálculo de Autonomia</h3>
+            <p>Cadastre o consumo (km/L) e o tanque da sua moto. Calculamos exatamente onde e quando você precisará parar para abastecer.</p>
+          </article>
+
+          <article class="card feature-card">
+            <div class="card-icon" aria-hidden="true">
+              <img src="assets/iconsindex/miranteserragaucha.jpg" alt="Pontos de Interesse" class="feature-icon-img">
+            </div>
+            <h3>Pontos de Interesse</h3>
+            <p>Mapeamos os melhores mirantes, restaurantes tradicionais e pontos turísticos do RS ao longo da sua rota.</p>
+          </article>
+
+          <article class="card feature-card">
+            <div class="card-icon" aria-hidden="true">
+              <img src="assets/iconsindex/moeda.png" alt="Estimativa de Gastos" class="feature-icon-img">
+            </div>
+            <h3>Estimativa de Gastos</h3>
+            <p>Tenha uma previsão clara do gasto total de combustível para a viagem de ida e volta antes de sair de casa.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+        <!-- Seção: Carrossel de Histórias -->
+    <section class="section carousel-section">
+      <div class="carousel-container">
+        <div class="carousel-track">
+          <div class="carousel-slide" data-index="0">
+            <img src="assets/paisagens/gramado.jpg" alt="Gramado">
+            <div class="carousel-overlay">
+              <h3>Gramado</h3>
+              <p>Conhecida por sua arquitetura de influência europeia, ruas floridas e clima ameno, Gramado é o principal polo turístico da Serra Gaúcha e oferece um charme inesquecível em qualquer época do ano.</p>
+            </div>
+          </div>
+          <div class="carousel-slide" data-index="1">
+            <img src="assets/paisagens/valedosvinhedos.jpg" alt="Vale dos Vinhedos">
+            <div class="carousel-overlay">
+              <h3>Vale dos Vinhedos</h3>
+              <p>Herança da imigração italiana, esta região abriga as mais prestigiadas vinícolas do Brasil, oferecendo paisagens bucólicas repletas de parreirais e excelente gastronomia colonial.</p>
+            </div>
+          </div>
+          <div class="carousel-slide" data-index="2">
+            <img src="assets/paisagens/serrariodorastro.jpg" alt="Cânions do Sul">
+            <div class="carousel-overlay">
+              <h3>Cânions do Sul</h3>
+              <p>Os majestosos cânions formam paredões rochosos vertiginosos e cachoeiras, sendo um dos cenários mais espetaculares do país e um desafio fascinante para o mototurismo.</p>
+            </div>
+          </div>
+          <div class="carousel-slide" data-index="3">
+            <img src="assets/paisagens/missoes.jpg" alt="Ruínas de São Miguel">
+            <div class="carousel-overlay">
+              <h3>Ruínas de São Miguel</h3>
+              <p>Patrimônio Mundial da UNESCO, as ruínas guardam a memória das antigas reduções jesuíticas-guaranis, sendo um símbolo histórico de forte espiritualidade no interior gaúcho.</p>
+            </div>
+          </div>
+          <div class="carousel-slide" data-index="4">
+            <img src="assets/paisagens/portoalegre.jpg" alt="Porto Alegre">
+            <div class="carousel-overlay">
+              <h3>Porto Alegre</h3>
+              <p>A capital gaúcha mescla tradição e modernidade. É banhada pelo Guaíba, que proporciona um dos mais belos pores do sol do Brasil e marca o ponto de partida de muitas aventuras.</p>
+            </div>
+          </div>
+        </div>
+        
+        <button class="carousel-btn prev-btn" aria-label="Anterior">&#10094;</button>
+        <button class="carousel-btn next-btn" aria-label="Próximo">&#10095;</button>
+      </div>
+    </section>
+
+    <!-- Seção: Destinos em Destaque no RS -->
+    <section class="section destinations bg-light" aria-labelledby="destinations-title">
+      <div class="container">
+        <div class="section-header">
+          <h2 id="destinations-title">Rotas Populares no Rio Grande do Sul</h2>
+          <p>Conheça os caminhos mais buscados por motociclistas de todo o país.</p>
+        </div>
+
+        <div class="grid grid-4">
+          <article class="card destination-card">
+            <div class="card-media media-gramado"></div>
+            <div class="card-body">
+              <h3>Serra Gaúcha</h3>
+              <p>Porto Alegre ➔ Gramado / Canela</p>
+              <a href="planejamento.html?destino=Gramado" class="card-link" aria-label="Ver rota para a Serra Gaúcha">Ver Rota &rarr;</a>
+            </div>
+          </article>
+
+          <article class="card destination-card">
+            <div class="card-media media-bento"></div>
+            <div class="card-body">
+              <h3>Vale dos Vinhedos</h3>
+              <p>Porto Alegre ➔ Bento Gonçalves</p>
+              <a href="planejamento.html?destino=Bento Gonçalves" class="card-link" aria-label="Ver rota para o Vale dos Vinhedos">Ver Rota &rarr;</a>
+            </div>
+          </article>
+
+          <article class="card destination-card">
+            <div class="card-media media-canions"></div>
+            <div class="card-body">
+              <h3>Rota dos Cânions</h3>
+              <p>Caxias do Sul ➔ Cambará do Sul</p>
+              <a href="planejamento.html?destino=Cambará do Sul" class="card-link" aria-label="Ver rota para a Rota dos Cânions">Ver Rota &rarr;</a>
+            </div>
+          </article>
+
+          <article class="card destination-card">
+            <div class="card-media media-missoes"></div>
+            <div class="card-body">
+              <h3>Rota das Missões</h3>
+              <p>Santa Maria ➔ São Miguel das Missões</p>
+              <a href="planejamento.html?destino=São Miguel das Missões" class="card-link" aria-label="Ver rota para a Rota das Missões">Ver Rota &rarr;</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>&copy; 2026 RotaRS Mototurismo - Projeto Acadêmico de Desenvolvimento Web</p>
+      <nav aria-label="Links do rodapé">
+        <a href="index.html">Início</a> | 
+        <a href="planejamento.html">Planejar</a> | 
+        <a href="motos.html">Minhas Motos</a>
+      </nav>
+    </div>
+  </footer>
+
+  
+  <script src="js/auth-nav.js"></script>
+  <script src="js/rotas-data.js"></script>
+  <script src="js/home-search.js"></script>
+</body>
+</html>
+
+
