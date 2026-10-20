@@ -55,6 +55,23 @@ document.addEventListener("DOMContentLoaded", () => {
   carouselContainer.addEventListener("mouseenter", stopAutoPlay);
   carouselContainer.addEventListener("mouseleave", startAutoPlay);
 
+  // Deslizar o dedo para trocar de imagem (celular)
+  let toqueInicioX = null;
+  carouselContainer.addEventListener("touchstart", (e) => {
+    toqueInicioX = e.touches[0].clientX;
+    stopAutoPlay();
+  }, { passive: true });
+
+  carouselContainer.addEventListener("touchend", (e) => {
+    if (toqueInicioX === null) return;
+    const diferenca = e.changedTouches[0].clientX - toqueInicioX;
+    if (Math.abs(diferenca) > 40) {
+      diferenca < 0 ? nextSlide() : prevSlide();
+    }
+    toqueInicioX = null;
+    startAutoPlay();
+  });
+
   updateCarousel();
   startAutoPlay();
 });
