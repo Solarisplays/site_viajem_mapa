@@ -1,6 +1,3 @@
-
-# RotaRS - Mototurismo no Rio Grande do Sul
-
 # RotaRS - Mototurismo no Rio Grande do Sul
 
 
