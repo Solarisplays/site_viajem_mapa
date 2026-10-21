@@ -8,16 +8,10 @@
 
 ## Sobre o Projeto
 
-## Sobre o Projeto
 
 O **RotaRS** é um projeto desenvolvido com foco em mototurismo pelo estado do Rio Grande do Sul. A plataforma oferece ferramentas essenciais para quem viaja sobre duas rodas: busca inteligente de rotas, calculadora de custo de viagem e paradas de abastecimento, catálogo técnico de motocicletas, área de perfil com galeria e um painel de administração restrito.
 
 ---
-
-
-## Funcionalidades Principais
-
-### 1. Página Inicial (`index.html`)
 
 ## Funcionalidades Principais
 
@@ -29,8 +23,6 @@ O **RotaRS** é um projeto desenvolvido com foco em mototurismo pelo estado do R
 
 
 ### 2. Planejador de Rotas (`planejamento.html`)
-
-### 2. 🗺️ Planejador de Rotas (`planejamento.html`)
 - **Catálogo de 20 Rotas Gaúchas**: Filtragem instantânea por nome, cidades de origem/destino e estilo da viagem.
 - **Integração com Veículo do Usuário**:
   - Se o usuário estiver logado, a plataforma puxa automaticamente o modelo da sua moto e o consumo médio (km/L) cadastrado.
@@ -47,12 +39,6 @@ O **RotaRS** é um projeto desenvolvido com foco em mototurismo pelo estado do R
 - Fichas técnicas completas: peso, potência, torque, capacidade do tanque de combustível e médias de consumo em diferentes velocidades de cruzeiro (80 km/h, 120 km/h e velocidade máxima).
 
 ### 4. Perfil do Usuário (`perfil.html`)
-
-### 3. Guia de Motos Registradas (`motos.html`)
-- Catálogo comparativo dividido por categorias de cilindrada (Baixa, Média e Alta).
-- Fichas técnicas completas: peso, potência, torque, capacidade do tanque de combustível e médias de consumo em diferentes velocidades de cruzeiro (80 km/h, 120 km/h e velocidade máxima).
-
-### 4. Perfil do Usuário (`perfil.html`)
 - Dados do piloto e resumo do veículo cadastrado.
 - **Controle de Privacidade**: Opções para ocultar idade, e-mail, veículo, rotas ou galeria para outros usuários.
 - **Galeria Interativa com Upload Múltiplo**: Envio de várias fotos simultâneas.
@@ -63,12 +49,6 @@ O **RotaRS** é um projeto desenvolvido com foco em mototurismo pelo estado do R
 - Formulário de cadastro com dados pessoais e especificações da motocicleta (marca, modelo e consumo em km/L).
 - Validações de campos em tempo real e persistência via `localStorage`.
 
-### 6. Painel do Administrador (`admin.html`)
-
-### 5. Autenticação e Cadastro (`login.html`)
-- Login de usuários e perfil especial de Administrador (`adm@gmail.com`).
-- Formulário de cadastro com dados pessoais e especificações da motocicleta (marca, modelo e consumo em km/L).
-- Validações de campos em tempo real e persistência via `localStorage`.
 
 ### 6. Painel do Administrador (`admin.html`)
 - **Proteção de Acesso**: Bloqueio de rota exclusivo para a conta administradora.
@@ -77,8 +57,6 @@ O **RotaRS** é um projeto desenvolvido com foco em mototurismo pelo estado do R
 - **Gerenciador de Motos**: Controle do catálogo de motocicletas do sistema.
 - **Moderação de Postagens**: Aba dedicada para moderação de comentários e avaliações.
 
-
-## Tecnologias Utilizadas
 
 ## Tecnologias Utilizadas
 
@@ -91,7 +69,6 @@ O **RotaRS** é um projeto desenvolvido com foco em mototurismo pelo estado do R
 
 ## Estrutura de Pastas
 
-## 📂 Estrutura de Pastas
 
 ```text
 faculdade/
@@ -121,8 +98,6 @@ faculdade/
 ```
 
 ---
-
-## Como Executar o Projeto Localmente
 
 ## Como Executar o Projeto Localmente
 
